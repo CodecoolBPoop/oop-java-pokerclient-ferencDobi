@@ -1,8 +1,17 @@
 import java.util.HashMap;
+import java.util.Map;
 
 public class Card {
 
     String cardCode;
+    private static Map<String, Integer> alphabeticCardValue = new HashMap<>();
+    static {
+        alphabeticCardValue.put("J", 11);
+        alphabeticCardValue.put("Q", 12);
+        alphabeticCardValue.put("K", 13);
+        alphabeticCardValue.put("A", 14);
+    }
+
 
     public Card(String cardCode) throws IllegalArgumentException {
 
@@ -11,12 +20,6 @@ public class Card {
 
         String cardValue = cardCode.substring(1).toUpperCase();
         Integer intCardValue;
-
-        HashMap<String, Integer> alphabeticCardValue = new HashMap<>();
-        alphabeticCardValue.put("J", 11);
-        alphabeticCardValue.put("Q", 12);
-        alphabeticCardValue.put("K", 13);
-        alphabeticCardValue.put("A", 14);
 
         if (alphabeticCardValue.get(cardCode.substring(1).toUpperCase()) == null) {
             // raises exception if cardValue is a letter, but not J/Q/K/A
@@ -34,11 +37,6 @@ public class Card {
     }
 
     public int getValue() {
-        HashMap<String, Integer> alphabeticCardValue = new HashMap<>();
-        alphabeticCardValue.put("J", 11);
-        alphabeticCardValue.put("Q", 12);
-        alphabeticCardValue.put("K", 13);
-        alphabeticCardValue.put("A", 14);
 
         String cardValue = cardCode.substring(1).toUpperCase();
         Integer intCardValue;
