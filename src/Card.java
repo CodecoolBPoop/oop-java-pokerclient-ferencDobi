@@ -19,14 +19,14 @@ public class Card {
             throw new IllegalArgumentException("card color isn't valid: " + cardCode.substring(0, 1));
 
         String cardValue = cardCode.substring(1).toUpperCase();
-        int intCardValue;
 
-        if (alphabeticCardValue.get(cardCode.substring(1).toUpperCase()) == null) {
+        if (alphabeticCardValue.get(cardValue) == null) {
+
             // raises exception if cardValue is a letter, but not J/Q/K/A
-            intCardValue = Integer.parseInt(cardValue);
-            if (intCardValue > 10 || intCardValue < 2) {
+            int intCardValue = Integer.parseInt(cardValue);
+
+            if (intCardValue > 10 || intCardValue < 2)
                 throw new IllegalArgumentException("card number isn't valid: " + intCardValue);
-            }
         }
 
         this.cardCode = cardCode;
