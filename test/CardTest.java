@@ -19,9 +19,11 @@ class CardTest {
     }
 
     @Test
-    void constructorThrowsExceptionWhenProvidedWithIllegalNumber() {
+    void constructorThrowsExceptionWhenProvidedWithOutOfBoundsNumber() {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Card("S11"));
         assertEquals("card number isn't valid: 11", thrown.getMessage());
+        thrown = assertThrows(IllegalArgumentException.class, () -> new Card("S1"));
+        assertEquals("card number isn't valid: 1", thrown.getMessage());
     }
 
     @TestFactory
