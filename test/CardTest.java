@@ -1,6 +1,9 @@
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.DynamicTest.*;
 
 class CardTest {
 
@@ -21,10 +24,24 @@ class CardTest {
         assertTrue(thrown.getMessage().matches(".*number.*"));
     }
 
-    @Test
-    void getValueConvertsLetterToCorrectValue() {
-        assertEquals(11, new Card("DJ").getValue());
-        assertEquals(13, new Card("SK").getValue());
-    }
+    @TestFactory
+    DynamicTest[] happyPathWorksAsExpected() {
+        Card card1 = new Card("DJ");
+        Card card2 = new Card("SK");
+        Card card3 = new Card("C9");
 
+        return new DynamicTest[] {
+                dynamicTest("constructorAcceptsValidArguments()", () -> {
+                    assertEquals("DJ", card1.cardCode);
+                    assertEquals("SK", card2.cardCode);
+                    assertEquals("C9", card3.cardCode);
+                }),
+                dynamicTest("getValueConvertsLetterToCorrectValue()", () -> {
+                    assertEquals(11, card1.getValue());
+                    assertEquals(13, card2.getValue());
+                }),
+                dynamicTest("getValueReturnsNumberWhenNoConversionIsNeeded()", () ->
+                        assertEquals(9, card3.getValue()))
+        };
+    }
 }
