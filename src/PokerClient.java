@@ -36,8 +36,8 @@ public class PokerClient {
             Card mc = m.get(i);
             for (int j = 0; j < o.size(); j++) {
                 Card oc = o.get(j);
-                if (oc.getValue() > mc.getValue()) {
-                    if (oc.getValue() > hc.getValue()) {
+                if (oc.getValue() >= mc.getValue()) {
+                    if (oc.getValue() >= hc.getValue()) {
                         hc = oc;
                     }
                 } else {
