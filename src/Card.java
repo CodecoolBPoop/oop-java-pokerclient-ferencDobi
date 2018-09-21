@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class Card {
 
@@ -33,16 +34,8 @@ public class Card {
     }
 
     public int getValue() {
-
         String cardValue = cardCode.substring(1);
-        Integer intCardValue;
 
-        if (alphabeticCardValue.get(cardCode.substring(1)) == null) {
-            intCardValue = Integer.parseInt(cardValue);
-        } else {
-            intCardValue = alphabeticCardValue.get(cardCode.substring(1));
-        }
-
-        return intCardValue;
+        return Optional.ofNullable(alphabeticCardValue.get(cardValue)).orElseGet(() -> Integer.parseInt(cardValue));
     }
 }
