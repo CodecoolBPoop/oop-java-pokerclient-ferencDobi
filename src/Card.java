@@ -18,9 +18,9 @@ public class Card {
         if (!cardCode.matches("[SCDHscdh].+"))
             throw new IllegalArgumentException("card color isn't valid: " + cardCode.substring(0, 1));
 
-        String cardValue = cardCode.substring(1).toUpperCase();
+        String cardValue = cardCode.substring(1);
 
-        if (alphabeticCardValue.get(cardValue) == null) {
+        if (!alphabeticCardValue.containsKey(cardValue.toUpperCase())) {
 
             // raises exception if cardValue is a letter, but not J/Q/K/A
             int intCardValue = Integer.parseInt(cardValue);
@@ -29,18 +29,18 @@ public class Card {
                 throw new IllegalArgumentException("card number isn't valid: " + intCardValue);
         }
 
-        this.cardCode = cardCode;
+        this.cardCode = cardCode.toUpperCase();
     }
 
     public int getValue() {
 
-        String cardValue = cardCode.substring(1).toUpperCase();
+        String cardValue = cardCode.substring(1);
         Integer intCardValue;
 
-        if (alphabeticCardValue.get(cardCode.substring(1).toUpperCase()) == null) {
+        if (alphabeticCardValue.get(cardCode.substring(1)) == null) {
             intCardValue = Integer.parseInt(cardValue);
         } else {
-            intCardValue = alphabeticCardValue.get(cardCode.substring(1).toUpperCase());
+            intCardValue = alphabeticCardValue.get(cardCode.substring(1));
         }
 
         return intCardValue;
