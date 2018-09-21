@@ -10,7 +10,7 @@ class CardTest {
     @Test
     void constructorThrowsExceptionWhenProvidedWithIllegalColor() {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Card("Z5"));
-        assertTrue(thrown.getMessage().matches(".*color.*"));
+        assertEquals("card color isn't valid: Z", thrown.getMessage());
     }
 
     @Test
@@ -21,7 +21,7 @@ class CardTest {
     @Test
     void constructorThrowsExceptionWhenProvidedWithIllegalNumber() {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> new Card("S11"));
-        assertTrue(thrown.getMessage().matches(".*number.*"));
+        assertEquals("card number isn't valid: 11", thrown.getMessage());
     }
 
     @TestFactory
