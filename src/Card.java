@@ -5,17 +5,9 @@ public class Card {
     String cardCode;
 
     public Card(String cardCode) throws IllegalArgumentException {
-        this.cardCode = cardCode;
 
-        String cardColor = this.cardCode.substring(0, 1).toUpperCase();
-
-        if (!cardColor.contentEquals("S") &&
-            !cardColor.contentEquals("C") &&
-            !cardColor.contentEquals("D") &&
-            !cardColor.contentEquals("H"))
-        {
-            throw new IllegalArgumentException("card color isn't valid: " + cardColor);
-        }
+        if (!cardCode.matches("[SCDHscdh].+"))
+            throw new IllegalArgumentException("card color isn't valid: " + cardCode.substring(0, 1));
 
         String cardValue = cardCode.substring(1).toUpperCase();
         Integer intCardValue;
@@ -37,6 +29,8 @@ public class Card {
             }
 
         }
+
+        this.cardCode = cardCode;
     }
 
     public int getValue() {
