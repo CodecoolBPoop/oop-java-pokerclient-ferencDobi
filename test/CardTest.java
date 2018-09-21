@@ -21,4 +21,10 @@ class CardTest {
         assertTrue(thrown.getMessage().matches(".*number.*"));
     }
 
+    @Test
+    void getValueConvertsLetterToCorrectValue() {
+        assertEquals(11, new Card("DJ").getValue());
+        assertEquals(13, new Card("SK").getValue());
+    }
+
 }
