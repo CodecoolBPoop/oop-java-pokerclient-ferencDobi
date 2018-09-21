@@ -13,15 +13,15 @@ public class Card {
         alphabeticCardValue.put("A", 14);
     }
 
-
     public Card(String cardCode) throws IllegalArgumentException {
+        cardCode = cardCode.toUpperCase();
 
-        if (!cardCode.matches("[SCDHscdh].+"))
+        if (!cardCode.matches("[SCDH].+"))
             throw new IllegalArgumentException("card color isn't valid: " + cardCode.substring(0, 1));
 
         String cardValue = cardCode.substring(1);
 
-        if (!alphabeticCardValue.containsKey(cardValue.toUpperCase())) {
+        if (!alphabeticCardValue.containsKey(cardValue)) {
 
             // raises exception if cardValue is a letter, but not J/Q/K/A
             int intCardValue = Integer.parseInt(cardValue);
@@ -30,7 +30,7 @@ public class Card {
                 throw new IllegalArgumentException("card number isn't valid: " + intCardValue);
         }
 
-        this.cardCode = cardCode.toUpperCase();
+        this.cardCode = cardCode;
     }
 
     public int getValue() {
